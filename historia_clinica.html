@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+
+        /*al pulsar sobre le último añadir selector comprobamos
+         si el input y el select anteriores no están vacíos
+         con $(this).prevAll(selector).val()*/
+
+        $("#nuevo").find("#add_selector:last").live('click',function(){
+            if($(this).prevAll("#nombre").val() == '')
+            {
+                alert('Existe un espacio en blanco');
+            }
+            else if($(this).prevAll("#puntos:last").val() == '')
+            {
+                alert('Elegir opción');
+            }else{
+
+                /*si los campos no están vacíos creamos otros campos para
+                 colocar una nueva etiqueta*/
+
+                $("#nuevo").append(
+                        '<div id="nuevo" class="grid_12">'+
+                        '<select name="puntos[]" id="puntos">'+
+                        '<option value="">Opciones</option>' +
+                        '<option value="1">Ortodoncia</option>'+
+                        '<option value="2">Implantes</option>'+
+                        '<option value="3">Estetica Dental</option>'+
+                        '<option value="4">Endodoncia</option>'+
+                        '<option value="5">Prótesis</option>'+
+                        '<option value="6">Ortopedia Dental</option>'+
+                        '<option value="7">Injerto Oseo</option></select>&nbsp;'+
+
+
+                        '<select name="puntos[]" id="puntos2">'+
+                        '<option value="">Opciones</option>'+
+                        '<option value="A1">A1</option>'+
+                        '<option value="A2">A2</option>'+
+                        '<option value="A3">A3</option>'+
+                        '<option value="A4">A4</option>'+
+                        '<option value="A5">A5</option>'+
+                        '<option value="A6">A6</option>'+
+                        '<option value="A7">A7</option></select>&nbsp;'+
+                        '<span class="grid_2" id="add_selector">Añadir etiqueta</span><div class="grid_2"'+
+                        'id="eliminar">Eliminar</div>');
+            }
+        })
+
+        //al pulsar sobre eliminar localizamos cúal ha sido con find y la ayuda de live
+
+        $('#nuevo').find("#eliminar").live('click',function(){
+
+            //localizamos el div nuevo y le ponemos el fondo amarillo
+
+            $(this).prevAll().eq(0).css('background','blue');
+
+            //con esta línea localizamos el valor del input del div sobre el que hemos pulsado
+
+            valor_input = $(this).prevAll().eq(0).find('input').val();
+
+            //con esta línea localizamos el valor del select del div sobre el que hemos pulsado
+
+            valor_select = $(this).prevAll().eq(0).find('select').val();
+            if(confirm('¿Deceas eliminar estos datos?' ))
+            {
+                $(this).prev("#nuevo").remove();
+                $(this).remove();
+            }else{
+                alert('No se hicieron cambios');
+                $(this).prevAll().eq(0).css('background','#2792bd');
+            }
+        })
+    });
+</script>
+
+<form name="registro2">
+    <div class="historial">
+
+
+        <label for="tratamiento_actual">¿Se encuentra bajo algun tratamiento medico actualmente?</label>
+        <select id="tratamiento_actual">
+            <option value="Si" >Si</option>
+            <option value="No">No</option>
+        </select>
+        <label for="relacion">¿Relacionado a que?</label>
+        <input type="text" id="relacion" name="nombre" size="10">
+        <br>
+
+
+        <label for="actual_enfermedad">¿Padece actualmente alguna enfermedad?</label>
+        <select id="actual_enfermedad">
+            <option value="Si" >Si</option>
+            <option value="No">No</option>
+        </select>
+        <label for="cual_enfer">¿Cual?</label>
+        <input type="text" id="cual_enfer" name="nombre" size="10">
+        <br>
+
+
+        <label for="intervencion_quirurgica">¿Ha tenido alguna intervencio quirurgica en el ultimo año?</label>
+        <select id="intervencion_quirurgica">
+            <option value="Si" >Si</option>
+            <option value="No">No</option>
+        </select>
+        <br>
+
+
+
+        <label for="medicamento_droga">¿Toma algun medicamento o droga como antibiotico sulfas ticoagulante, insulina, tranquilizante o analgesicos?</label>
+        <select id="medicamento_droga">
+            <option value="Si" >Si</option>
+            <option value="No">No</option>
+        </select>
+        <label for="cual_droga">¿Cual?</label>
+        <input type="text" id="cual_droga" name="nombre" size="10">
+        <br>
+
+
+
+        <label for="trasfuncio_sanguinea">¿Ha recibido trasfucion sanguineas?</label>
+        <select id="trasfuncio_sanguinea">
+            <option value="Si" >Si</option>
+            <option value="No">No</option>
+        </select>
+        <br>
+
+
+
+
+        <label for="alergia">¿Presenta algun tipo de alergia?</label>
+        <select id="alergia">
+            <option value="Si" >Si</option>
+            <option value="No">No</option>
+        </select>
+        <label for="tipo">¿A que?</label>
+        <input type="text" id="tipo" name="nombre" size="10">
+        <br>
+
+
+
+        <label for="desmayo">¿Se ha desmayado alguna vez?</label>
+        <select id="desmayo">
+            <option value="Si" >Si</option>
+            <option value="No">No</option>
+        </select>
+        <br>
+
+
+
+
+        <label for="sed_hambre">¿Tiene sensacion de sed o hambre con mucha frecuencia?</label>
+        <select id="sed_hambre">
+            <option value="Si" >Si</option>
+            <option value="No">No</option>
+        </select>
+        <br>
+
+
+
+
+        <label for="respiracion">¿Le ha faltado la respiracion cuando se esfuerza?</label>
+        <select id="respiracion">
+            <option value="Si" >Si</option>
+            <option value="No">No</option>
+        </select>
+        <br>
+
+
+
+        <label for="embarazada">¿Esta usted embarazada?</label>
+        <select id="embarazada">
+            <option value="Si" >Si</option>
+            <option value="No">No</option>
+        </select>
+        <br>
+
+
+
+
+        <label for="meses">¿Cuantos meses tiene?</label>
+        <select id="meses">
+            <option value="Si" >Si</option>
+            <option value="No">No</option>
+        </select>
+        <br>
+        <center><h1>Antecedentes familiares hereditarios</h1></center>
+
+        <label for="ante_madre">Madre</label>
+        <input type="text" id="ante_madre" name="nombre" size="80"><br>
+
+        <label for="ante_padre">Padre</label>
+        <input type="text" id="ante_padre" name="nombre" size="80"><br>
+
+        <label for="ante_herma">Hermanos</label>
+        <input type="text" id="ante_herma" name="nombre" size="76"><br>
+
+        <label for="hijos">Hijos</label>
+        <input type="text" id="hijos" name="nombre" size="80"><br>
+
+
+        <center><h1>Antecedentes personales patalogicos</h1></center>
+
+        <label for="alt_sangui">ALT sanguineas</label>
+        <select id="alt_sangui">
+            <option value="Si" >Si</option>
+            <option value="No">No</option>
+        </select>
+
+
+        <label for="anemia">Anemia</label>
+        <select id="anemia">
+            <option value="Si" >Si</option>
+            <option value="No">No</option>
+        </select>
+
+        <label for="artritis">Artritis</label>
+        <select id="artritis">
+            <option value="Si" >Si</option>
+            <option value="No">No</option>
+        </select>
+
+
+        <label for="Asma">Asma</label>
+        <select id="Asma">
+            <option value="Si" >Si</option>
+            <option value="No">No</option>
+        </select>
+
+
+        <label for="cancer">Cancer</label>
+        <select id="cancer">
+            <option value="Si" >Si</option>
+            <option value="No">No</option>
+        </select>
+
+        <label for="depreciones">Depreciones</label>
+        <select id="depreciones">
+            <option value="Si" >Si</option>
+            <option value="No">No</option>
+        </select>
+
+
+        <br>
+
+
+
+        <label for="epilepcias">Epilepcias</label>
+        <select id="epilepcias">
+            <option value="Si" >Si</option>
+            <option value="No">No</option>
+        </select>
+
+
+        <label for="diabetes">Diabetes</label>
+        <select id="diabetes">
+            <option value="Si" >Si</option>
+            <option value="No">No</option>
+        </select>
+
+
+
+
+        <label for="gastritis">Gastritis</label>
+        <select id="gastritis">
+            <option value="Si" >Si</option>
+            <option value="No">No</option>
+        </select>
+
+
+        <label for="hepatitis">Hepatitis</label>
+        <select id="hepatitis">
+            <option value="Si" >Si</option>
+            <option value="No">No</option>
+        </select>
+
+        <label for="hipotencion">Hipotencion</label>
+        <select id="hipotencion">
+            <option value="Si" >Si</option>
+            <option value="No">No</option>
+        </select>
+
+        <br>
+
+
+        <label for="traumatismo">Traumatismo</label>
+        <select id="traumatismo">
+            <option value="Si" >Si</option>
+            <option value="No">No</option>
+        </select>
+
+
+        <label for="tuberculosis">Tuberculosis</label>
+        <select id="tuberculosis">
+            <option value="Si" >Si</option>
+            <option value="No">No</option>
+        </select>
+
+        <label for="fiebre_reuma">Fiebre reumatica</label>
+        <select id="fiebre_reuma">
+            <option value="Si" >Si</option>
+            <option value="No">No</option>
+        </select>
+
+
+        <label for="ETS">ETS</label>
+        <select id="ETS">
+            <option value="Si" >Si</option>
+            <option value="No">No</option>
+        </select>
+
+
+        <label for="varisela">Varisela</label>
+        <select id="varisela">
+            <option value="Si" >Si</option>
+            <option value="No">No</option>
+        </select>
+
+        <label for="rubiola">Rubiola</label>
+        <select id="rubiola">
+            <option value="Si" >Si</option>
+            <option value="No">No</option>
+        </select>
+
+        <br>
+
+        <label for="sarampion">Sarampion</label>
+        <select id="sarampion">
+            <option value="Si" >Si</option>
+            <option value="No">No</option>
+        </select>
+
+
+        <label for="parotiditis">Parotiditis</label>
+        <select id="parotiditis">
+            <option value="Si" >Si</option>
+            <option value="No">No</option>
+        </select>
+
+        <label for="escarlatina">Escarlatina</label>
+        <select id="escarlatina">
+            <option value="Si" >Si</option>
+            <option value="No">No</option>
+        </select>
+
+
+        <label for="enfer_endo">Enfermedad endocrina</label>
+        <select id="enfer_endo">
+            <option value="Si" >Si</option>
+            <option value="No">No</option>
+        </select>
+
+
+        <label for="enfer_cardio">Enfermedad cardiobascular</label>
+        <select id="enfer_cardio">
+            <option value="Si" >Si</option>
+            <option value="No">No</option>
+        </select>
+
+        <br>
+
+        <label for="otro">Otro</label>
+        <select id="otro">
+            <option value="Si" >Si</option>
+            <option value="No">No</option>
+        </select>
+        <label for="cual3">¿Cual?</label>
+        <input type="text" id="cual3" name="nombre" size="10">
+
+        <br>
+
+
+        <label for="alergia_sustancias">Es alergico al apecilina, sulfas u otras sustancias</label>
+        <select id="alergia_sustancias">
+            <option value="Si" >Si</option>
+            <option value="No">No</option>
+        </select>
+        <label for="cual_alergia">¿Cual?</label>
+        <input type="text" id="cual_alergia" name="nombre" size="10">
+        <br>
+
+        <center><h1>Registro clinico odontologico</h1></center>
+
+
+        <label for="enfer_perio">Enfermedad periodontal</label>
+        <select id="enfer_perio">
+            <option value="Si" >Si</option>
+            <option value="No">No</option>
+        </select>
+        <br>
+
+
+
+
+        <label for="infeccion_cavidad">¿Presenta algun infeccion en cavidad oral?</label>
+        <select id="infeccion_cavidad">
+            <option value="Si" >Si</option>
+            <option value="No">No</option>
+        </select>
+        <br>
+
+
+        <label for="habitos">¿Habitos?</label>
+        <select id="habitos">
+            <option value="Si" >Si</option>
+            <option value="No">No</option>
+        </select>
+        <label for="a_que">¿A que?</label>
+        <input type="text" id="a_que" name="nombre" size="10">
+
+
+
+        <h1>Agendar cita nueva</h1>
+        <div class="container_12">
+
+
+            <div id="nuevo" class="grid_12">
+                <select name="puntos[]" id="puntos">
+                    <option value="">Opciones</option>
+                    <option value="1">Ortodoncia</option>
+                    <option value="2">Implantes</option>
+                    <option value="3">Estetica Dental</option>
+                    <option value="4">Endodoncia</option>
+                    <option value="5">Prótesis</option>
+                    <option value="6">Ortopedia Dental</option>
+                    <option value="7">Injerto Oseo</option>
+                </select>
+
+                <select name="puntos[]" id="puntos2">
+                    <option value="">Opciones</option>
+                    <option value="A1">A1</option>
+                    <option value="A2">A2</option>
+                    <option value="A3">A3</option>
+                    <option value="A4">A4</option>
+                    <option value="A5">A5</option>
+                    <option value="A6">A6</option>
+                    <option value="A7">A7</option>
+                </select>
+
+                <span class="grid_2" id="add_selector">Añadir etiqueta</span>
+            </div></div>
+
+        <button type="button">Agregar</button>
+
+        <center><h1>Agenda cita nueva</h1></center>
+        Fecha: <input type="date" name="date_control" />
+
+        <div align="center">
+            <a href="#">Guardar</a>
+
+        </div>
+    </div>
+</form>
+
+</body>
+</html>
